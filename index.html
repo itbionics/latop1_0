@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MUNDO RECARGA | Mayorista en Cómputo</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        .header-top {
+            background: #1a1a1a;
+            color: white;
+            padding: 10px 0;
+            font-size: 12px;
+        }
+        
+        .header-top .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            padding: 0 15px;
+        }
+        
+        .header-main {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 32px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: #e74c3c;
+        }
+        
+        .cart-btn {
+            background: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .breadcrumb {
+            background: white;
+            padding: 15px 0;
+            margin-top: 10px;
+        }
+        
+        .breadcrumb a {
+            color: #666;
+            text-decoration: none;
+            margin-right: 5px;
+        }
+        
+        .breadcrumb a:hover {
+            color: #e74c3c;
+        }
+        
+        .product-section {
+            background: white;
+            padding: 30px;
+            margin: 20px auto;
+            border-radius: 5px;
+        }
+        
+        .product-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+        
+        .product-image {
+            text-align: center;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .product-image img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .product-info h1 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        
+        .price-box {
+            background: #f0f8ff;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        
+        .price {
+            font-size: 36px;
+            color: #e74c3c;
+            font-weight: bold;
+        }
+        
+        .price-label {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .card-price {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #ddd;
+        }
+        
+        .stock-info {
+            margin: 20px 0;
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+        
+        .stock-location {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+        }
+        
+        .stock-available {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        
+        .qty-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            font-size: 20px;
+        }
+        
+        .qty-input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .btn-buy {
+            flex: 1;
+            background: #e74c3c;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .btn-buy:hover {
+            background: #c0392b;
+        }
+        
+        .btn-cart {
+            flex: 1;
+            background: #3498db;
+            color: white;
+            padding: 15px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        
+        .tabs {
+            margin-top: 40px;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .tab-btn {
+            padding: 15px 30px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-size: 16px;
+            border-bottom: 3px solid transparent;
+        }
+        
+        .tab-btn.active {
+            color: #e74c3c;
+            border-bottom-color: #e74c3c;
+        }
+        
+        .tab-content {
+            padding: 20px;
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .contact-form {
+            background: #f9f9f9;
+            padding: 30px;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+        }
+        
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .btn-submit {
+            background: #e74c3c;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+        
+        .footer h3 {
+            color: #e74c3c;
+            margin-bottom: 15px;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .product-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-top">
+        <div class="container">
+            <div>📞 Ventas: (51) 934 580 580</div>
+            <div>📧 ventas@mundorecarga.com.pe</div>
+        </div>
+    </div>
+    
+    <header class="header-main">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">MUNDO RECARGA</div>
+                <nav>
+                    <ul class="nav-links">
+                        <li><a href="#">Inicio</a></li>
+                        <li><a href="#">Productos</a></li>
+                        <li><a href="#">Ofertas</a></li>
+                        <li><a href="#">Nuevo</a></li>
+                        <li><a href="#">Marcas</a></li>
+                        <li><a href="#">Tiendas</a></li>
+                    </ul>
+                </nav>
+                <button class="cart-btn">🛒 Carrito</button>
+            </div>
+        </div>
+    </header>
+    
+    <div class="container">
+        <div class="breadcrumb">
+            <a href="#">Inicio</a> / 
+            <a href="#">Laptops y AIO</a> / 
+            <a href="#">Laptop Notebooks</a> / 
+            <span>NB LENOVO V15 G4 IRU</span>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="product-section">
+            <div class="product-container">
+                <div class="product-image">
+                    <img src="https://via.placeholder.com/400x300/f0f0f0/666666?text=LENOVO+V15+G4" alt="Lenovo V15">
+                    <p style="color: #999; margin-top: 10px;">IMÁGENES REFERENCIALES</p>
+                </div>
+                
+                <div class="product-info">
+                    <h1>NB LENOVO V15 G4 IRU, CORE I7-1355U 5.0GHZ, 16GB, 1TB, 15.6" FHD TN 83A100ESLM</h1>
+                    
+                    <div><strong>Marca:</strong> LENOVO</div>
+                    <div><strong>Código:</strong> 005101</div>
+                    <div><strong>Número de Parte:</strong> 83A100ESLM</div>
+                    
+                    <div class="price-box">
+                        <div class="price-label">Pague con Transferencia o Depósito Bancario</div>
+                        <div class="price">S/ 2,790.00</div>
+                        
+                        <div class="card-price">
+                            <div class="price-label">Pagando con Tarjeta de Crédito o Débito (2.5% adicional)</div>
+                            <div style="font-size: 24px; color: #333;">S/ 2,859.75</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stock-info">
+                        <h3>Stock Disponible</h3>
+                        <div class="stock-location">
+                            <span><strong>LIMA:</strong></span>
+                            <span>0 Uds.</span>
+                        </div>
+                        <div class="stock-location">
+                            <span><strong>AREQUIPA:</strong></span>
+                            <span class="stock-available">1 Uds.</span>
+                        </div>
+                        <div class="stock-location">
+                            <span><strong>PUNO:</strong></span>
+                            <span>0 Uds.</span>
+                        </div>
+                        <div class="stock-location">
+                            <span><strong>JULIACA:</strong></span>
+                            <span>0 Uds.</span>
+                        </div>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <label><strong>CANTIDAD:</strong></label>
+                        <button class="qty-btn" onclick="decreaseQty()">-</button>
+                        <input type="number" class="qty-input" id="quantity" value="1" min="1">
+                        <button class="qty-btn" onclick="increaseQty()">+</button>
+                    </div>
+                    
+                    <div class="action-buttons">
+                        <button class="btn-buy" onclick="alert('Compra procesada')">Comprar</button>
+                        <button class="btn-cart" onclick="alert('Agregado al carrito')">Añadir al Carrito</button>
+                    </div>
+                    
+                    <div style="margin-top: 20px; padding: 15px; background: #fff8dc; border-radius: 5px;">
+                        <p><strong>✓</strong> Precio incluido IGV</p>
+                        <p><strong>✓</strong> Entrega inmediata</p>
+                        <p><strong>✓</strong> Productos nuevos y facturados</p>
+                        <p><strong>✓</strong> Garantía de 12 meses</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="tabs">
+                <div class="tab-buttons">
+                    <button class="tab-btn active" onclick="showTab(0)">GENERAL</button>
+                    <button class="tab-btn" onclick="showTab(1)">GARANTÍA</button>
+                    <button class="tab-btn" onclick="showTab(2)">CONSULTAS</button>
+                </div>
+                
+                <div class="tab-content active" id="tab-0">
+                    <h3>Condiciones de Compra</h3>
+                    <ul style="line-height: 1.8; margin-left: 20px;">
+                        <li>Las imágenes son referenciales</li>
+                        <li>El stock y precio son reales, pero pueden variar sin previo aviso</li>
+                        <li>Los productos son nuevos y facturados</li>
+                        <li>Los precios incluyen el I.G.V.</li>
+                        <li>El flete de envío no está incluido en el precio</li>
+                        <li>Si ve el stock en 1, consulte con un asesor si está en exhibición o en caja sellada</li>
+                    </ul>
+                    <p style="margin-top: 20px;">Para más información contáctese con uno de nuestros <strong>Asesores de Ventas</strong></p>
+                </div>
+                
+                <div class="tab-content" id="tab-1">
+                    <h3>Información Sobre Garantías</h3>
+                    <ul style="line-height: 1.8; margin-left: 20px;">
+                        <li>Todos nuestros productos cuentan con garantía de <strong>12 meses</strong></li>
+                        <li>El tiempo extendido de garantía depende de cada marca</li>
+                        <li>La garantía de periféricos como teclados, mouse, auriculares y accesorios están sujetos al tiempo de garantía que brinda cada marca</li>
+                    </ul>
+                    <p style="margin-top: 20px;">Para más información sobre garantías, revise nuestros <strong>Términos y Condiciones de Compra</strong></p>
+                </div>
+                
+                <div class="tab-content" id="tab-2">
+                    <div class="contact-form">
+                        <h3>Consultas</h3>
+                        <form onsubmit="handleSubmit(event)">
+                            <div class="form-group">
+                                <label>Su Nombre *</label>
+                                <input type="text" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Su Email *</label>
+                                <input type="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label>N° Móvil *</label>
+                                <input type="tel" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Su Mensaje</label>
+                                <textarea required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Enviar Mensaje</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>CONTACTO</h3>
+                    <ul class="footer-links">
+                        <li>📞 Lima: 992 070 221</li>
+                        <li>📞 Arequipa: 931 658 687</li>
+                        <li>📞 Juliaca: 977 736 896</li>
+                        <li>📧 ventas@mundorecarga.com.pe</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>INFORMACIÓN</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Nosotros</a></li>
+                        <li><a href="#">Términos y Condiciones</a></li>
+                        <li><a href="#">Políticas de Privacidad</a></li>
+                        <li><a href="#">Servicio al Cliente</a></li>
+                        <li><a href="#">Garantías y Devoluciones</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>NUESTRAS TIENDAS</h3>
+                    <ul class="footer-links">
+                        <li><strong>LIMA:</strong> Av. Inca Garcilaso de la Vega 1314</li>
+                        <li><strong>AREQUIPA:</strong> Calle Octavio Muñoz Najar 248</li>
+                        <li><strong>JULIACA:</strong> Jr. Raul Porras B. 690</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #333;">
+                <p>MUNDO RECARGA © 2024 - Todos los derechos reservados</p>
+            </div>
+        </div>
+    </footer>
+    
+    <script>
+        function showTab(index) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-btn');
+            
+            tabs.forEach((tab, i) => {
+                tab.classList.toggle('active', i === index);
+            });
+            
+            buttons.forEach((btn, i) => {
+                btn.classList.toggle('active', i === index);
+            });
+        }
+        
+        function increaseQty() {
+            const input = document.getElementById('quantity');
+            input.value = parseInt(input.value) + 1;
+        }
+        
+        function decreaseQty() {
+            const input = document.getElementById('quantity');
+            if (parseInt(input.value) > 1) {
+                input.value = parseInt(input.value) - 1;
+            }
+        }
+        
+        function handleSubmit(e) {
+            e.preventDefault();
+            alert('¡Mensaje enviado! Nos contactaremos contigo pronto.');
+            e.target.reset();
+        }
+    </script>
+</body>
+</html>
